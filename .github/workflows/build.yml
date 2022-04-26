@@ -22,4 +22,4 @@ jobs:
     
     - name: Build
       run: |
-        dotnet test ./src/WiseOwl.Pirates.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Threshold=0 /p:ExcludeByAttribute=CompilerGenerated /p:UseSourceLink=true /p:CoverletOutput='./TestResults/Coverage/'
+        dotnet build
