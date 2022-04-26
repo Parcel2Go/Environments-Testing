@@ -1,0 +1,25 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'EnvTest/EnvTest/**'
+      - '.github/workflows/build.yml'
+      
+defaults:
+  run:
+    working-directory: 'EnvTest/EnvTest'
+      
+jobs:
+  build:
+    name: Build solution
+    runs-on: ubuntu-20.04
+    environment: Test
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Build
+      run: |
+        dotnet test ./src/WiseOwl.Pirates.Tests /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:Threshold=0 /p:ExcludeByAttribute=CompilerGenerated /p:UseSourceLink=true /p:CoverletOutput='./TestResults/Coverage/'
